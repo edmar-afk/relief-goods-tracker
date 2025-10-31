@@ -36,9 +36,10 @@ function UserList() {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
+
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
+      { breakpoint: 1024, settings: { slidesToShow: 2, adaptiveHeight: true } },
+      { breakpoint: 640, settings: { slidesToShow: 1, adaptiveHeight: true } },
     ],
   };
 
@@ -50,8 +51,8 @@ function UserList() {
       <Slider {...settings}>
         {residents.map((user) => (
           <div key={user.id} class="p-2 flex justify-center">
-            <div class="w-[250px] bg-white border border-gray-200 rounded-lg shadow-sm">
-              <div class="flex flex-col items-center pb-10">
+            <div class="w-[250px] bg-white border border-gray-200 rounded-lg shadow-sm h-[400px] overflow-y-auto custom-scrollbar">
+              <div class="flex flex-col items-center pb-10 -mt-5">
                 <img
                   class="w-24 h-24 mb-3 rounded-full shadow-lg mt-12 object-cover"
                   src={user.profile?.profile_picture || logo}

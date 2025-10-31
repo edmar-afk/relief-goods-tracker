@@ -89,22 +89,7 @@ export default function Sidebar({ items = [] }) {
                       Distribution Lists
                     </Link>
                   </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-3 rounded-lg hover:bg-slate-100"
-                    >
-                      Transactions
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block p-3 rounded-lg hover:bg-slate-100"
-                    >
-                      Settings
-                    </a>
-                  </li>
+                 
                 </>
               ) : (
                 items.map((it, i) => (

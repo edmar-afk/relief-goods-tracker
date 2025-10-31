@@ -27,7 +27,6 @@
     "react-apexcharts": "^1.7.0",
     "react-dom": "^19.1.0",
     "react-leaflet": "^5.0.0",
-    "react-qr-reader": "^3.0.0-beta-1",
     "react-router-dom": "^7.6.2",
     "react-signature-pad-wrapper": "^4.1.1",
     "react-slick": "^0.31.0",

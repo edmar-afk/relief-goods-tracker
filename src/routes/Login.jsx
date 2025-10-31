@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../assets/api";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import welcomeImg from "../assets/images/welcome.png";
 function Login() {
   const navigate = useNavigate();
   const [phone, setPhone] = useState("");
@@ -46,6 +46,7 @@ function Login() {
     <div class="lg:min-h-screen flex fle-col items-center justify-center p-6">
       <div class="grid lg:grid-cols-2 items-center gap-10 max-w-6xl max-lg:max-w-lg w-full">
         <div>
+          <img src={welcomeImg} className="w-72" alt="" />
           <h1 class="lg:text-5xl text-4xl font-bold text-slate-900 !leading-tight">
             Welcome to Lakewood Relief Goods Tracking System
           </h1>
@@ -58,7 +59,7 @@ function Login() {
           <p class="text-[14px] mt-4 text-slate-500">
             Don't have an account?
             <Link
-               to={"/register"}
+              to={"/register"}
               class="text-orange-600 font-medium hover:underline"
             >
               <span className="ml-1 font-bold underline">Register here</span>

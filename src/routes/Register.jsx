@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../assets/api";
-
+import welcomeImg from "../assets/images/welcome.png";
 function Register() {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
@@ -56,6 +56,7 @@ function Register() {
     <div class="lg:min-h-screen flex items-center justify-center p-6 bg-gray-50">
       <div class="grid lg:grid-cols-2 items-center gap-10 max-w-6xl w-full max-lg:max-w-lg">
         <div>
+          <img src={welcomeImg} className="w-72" alt="" />
           <h1 class="lg:text-5xl text-4xl font-bold text-slate-900 !leading-tight">
             Welcome to Lakewood Relief Goods Tracking System
           </h1>

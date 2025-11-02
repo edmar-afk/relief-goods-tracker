@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
 import DeleteIcon from "@mui/icons-material/Delete";
 import logo from "../../assets/images/logo.jpg";
 import api from "../../assets/api";
 import { Link } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import QrCodeIcon from "@mui/icons-material/QrCode";
+import Swal from "sweetalert2";
 
 function UserList() {
   const [residents, setResidents] = useState([]);
@@ -30,17 +30,27 @@ function UserList() {
     });
   };
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2, adaptiveHeight: true } },
-      { breakpoint: 640, settings: { slidesToShow: 1, adaptiveHeight: true } },
-    ],
+  const handleDeleteUser = (user) => {
+    Swal.fire({
+      title: `You want to remove ${user.first_name}?`,
+      text: "Deleting can't be undone",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, remove",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        api.delete(`/api/users/delete/${user.id}/`).then(() => {
+          setResidents(residents.filter((u) => u.id !== user.id));
+          Swal.fire(
+            "Deleted!",
+            `${user.first_name} has been removed.`,
+            "success"
+          );
+        });
+      }
+    });
   };
 
   return (
@@ -48,10 +58,11 @@ function UserList() {
       <div className="flex flex-row justify-between mb-5">
         <p>Registered Residents</p>
       </div>
-      <Slider {...settings}>
+
+      <div className="flex flex-row flex-wrap gap-8 justify-center">
         {residents.map((user) => (
-          <div key={user.id} class="p-2 flex justify-center">
-            <div class="w-[250px] bg-white border border-gray-200 rounded-lg shadow-sm h-[400px] overflow-y-auto custom-scrollbar">
+          <div key={user.id} class="flex justify-center">
+            <div class="w-[300px] lg:w-[250px] bg-white border border-gray-200 rounded-lg shadow-sm h-[400px] overflow-y-auto custom-scrollbar">
               <div class="flex flex-col items-center pb-10 -mt-5">
                 <img
                   class="w-24 h-24 mb-3 rounded-full shadow-lg mt-12 object-cover"
@@ -85,7 +96,10 @@ function UserList() {
                 </div>
 
                 <div class="flex flex-col w-full px-4 gap-2 mt-4 md:mt-6">
-                  <button class="py-2 px-4 cursor-pointer ms-2 text-sm font-medium text-white bg-red-500 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-red-100 duration-300">
+                  <button
+                    onClick={() => handleDeleteUser(user)}
+                    class="py-2 px-4 cursor-pointer ms-2 text-sm font-medium text-white bg-red-500 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-4 focus:ring-red-100 duration-300"
+                  >
                     <DeleteIcon fontSize="small" className="-mt-0.5" /> Remove
                   </button>
 
@@ -110,7 +124,7 @@ function UserList() {
             </div>
           </div>
         ))}
-      </Slider>
+      </div>
     </div>
   );
 }

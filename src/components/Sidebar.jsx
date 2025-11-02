@@ -21,7 +21,11 @@ export default function Sidebar({ items = [] }) {
 
   return (
     <div className="flex">
-      <AppBar position="fixed" className="bg-white shadow-sm z-30">
+      <AppBar
+        position="fixed"
+        sx={{ zIndex: 500 }}
+        className="bg-white shadow-sm"
+      >
         <Toolbar className="flex items-center justify-between bg-orange-500">
           <div className="flex items-center gap-3">
             <IconButton
@@ -50,6 +54,7 @@ export default function Sidebar({ items = [] }) {
       </AppBar>
 
       <Drawer
+        sx={{ zIndex: 500 }}
         ModalProps={{ keepMounted: true }}
         variant={mdUp ? "permanent" : "temporary"}
         open={open}
@@ -75,7 +80,7 @@ export default function Sidebar({ items = [] }) {
                 <>
                   <li>
                     <Link
-                      to={'/admin-dashboard'}
+                      to={"/admin-dashboard"}
                       className="block p-3 rounded-lg hover:bg-slate-100"
                     >
                       Home
@@ -83,13 +88,12 @@ export default function Sidebar({ items = [] }) {
                   </li>
                   <li>
                     <Link
-                      to={'/distributions'}
+                      to={"/distributions"}
                       className="block p-3 rounded-lg hover:bg-slate-100"
                     >
                       Distribution Lists
                     </Link>
                   </li>
-                 
                 </>
               ) : (
                 items.map((it, i) => (
@@ -104,8 +108,6 @@ export default function Sidebar({ items = [] }) {
                 ))
               )}
             </ul>
-
-            
           </nav>
 
           <footer className="p-4 border-t">

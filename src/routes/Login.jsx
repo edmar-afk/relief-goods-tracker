@@ -48,7 +48,7 @@ function Login() {
         <div>
           <img src={welcomeImg} className="w-72" alt="" />
           <h1 class="lg:text-5xl text-4xl font-bold text-slate-900 !leading-tight">
-            Welcome to Lakewood Relief Goods Tracking System
+            Welcome to Bayog Relief Goods Tracking System
           </h1>
 
           <p class="text-[15px] mt-6 text-slate-600 leading-relaxed">

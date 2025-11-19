@@ -66,7 +66,7 @@ function UserList() {
               <div class="flex flex-col items-center pb-10 -mt-5">
                 <img
                   class="w-24 h-24 mb-3 rounded-full shadow-lg mt-12 object-cover"
-                  src={user.profile?.profile_picture || logo}
+                  src={user.profile?.profile_picture || 'https://static.vecteezy.com/system/resources/previews/046/010/545/non_2x/user-icon-simple-design-free-vector.jpg'}
                   draggable="false"
                   alt="profile"
                 />

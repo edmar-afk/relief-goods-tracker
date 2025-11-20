@@ -53,6 +53,8 @@ function UserList() {
     });
   };
 
+  console.log(residents)
+
   return (
     <div class="p-4">
       <div className="flex flex-row justify-between mb-5">

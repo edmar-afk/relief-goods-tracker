@@ -13,6 +13,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [profilePic, setProfilePic] = useState(null);
 
   const isMobileValid = /^09\d{9}$/.test(phone);
   const isPasswordMatch = password !== "" && password === repeatPassword;
@@ -20,17 +21,23 @@ function Register() {
   const handleRegister = async () => {
     if (!isMobileValid || !isPasswordMatch) return;
     setLoading(true);
+
     try {
-      await api.post("/api/register/", {
-        username: phone,
-        first_name: fullName,
-        last_name: familyMembers,
-        password,
-        profile: {
-          purok,
-          address,
-          family_members: familyMembers,
-        },
+      const formData = new FormData();
+      formData.append("username", phone);
+      formData.append("first_name", fullName);
+      formData.append("last_name", familyMembers);
+      formData.append("password", password);
+      formData.append("purok", purok);
+      formData.append("address", address);
+      formData.append("family_members", familyMembers);
+
+      if (profilePic) {
+        formData.append("profile_picture", profilePic);
+      }
+
+      await api.post("/api/register/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       Swal.fire({
@@ -42,6 +49,7 @@ function Register() {
 
       navigate("/");
     } catch (err) {
+      console.log(err.response?.data); // <--- SHOW FULL ERROR
       Swal.fire({
         icon: "error",
         title: "Registration Failed",
@@ -132,6 +140,13 @@ function Register() {
               class="w-full px-4 py-3 bg-slate-100 border border-gray-200 rounded-md text-sm focus:border-orange-600"
               value={familyMembers}
               onChange={(e) => setFamilyMembers(e.target.value)}
+            />
+
+            <input
+              type="file"
+              accept="image/*"
+              class="w-full px-4 py-3 bg-slate-100 border border-gray-200 rounded-md text-sm"
+              onChange={(e) => setProfilePic(e.target.files[0])}
             />
 
             <input

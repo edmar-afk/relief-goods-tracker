@@ -3,7 +3,9 @@ import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../assets/api";
 import CircularProgress from "@mui/material/CircularProgress";
-import welcomeImg from "../assets/images/welcome.png";
+import logo1 from "../assets/images/logo1.jpg";
+import logo2 from "../assets/images/logo2.jpg";
+
 function Login() {
   const navigate = useNavigate();
   const [phone, setPhone] = useState("");
@@ -46,7 +48,10 @@ function Login() {
     <div class="lg:min-h-screen flex fle-col items-center justify-center p-6">
       <div class="grid lg:grid-cols-2 items-center gap-10 max-w-6xl max-lg:max-w-lg w-full">
         <div>
-          <img src={welcomeImg} className="w-72" alt="" />
+          <div className="flex flex-row items-center  gap-2">
+            <img src={logo1} className="w-24 rounded-full" alt="" />
+            <img src={logo2} className="w-24 rounded-full" alt="" />
+          </div>
           <h1 class="lg:text-5xl text-4xl font-bold text-slate-900 !leading-tight">
             Welcome to Bayog Relief Goods Tracking System
           </h1>

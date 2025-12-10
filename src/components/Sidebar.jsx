@@ -9,6 +9,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.jpg";
+import logo1 from "../assets/images/logo1.jpg";
+import logo2 from "../assets/images/logo2.jpg";
+
 const drawerWidth = 280;
 
 export default function Sidebar({ items = [] }) {
@@ -63,9 +66,10 @@ export default function Sidebar({ items = [] }) {
       >
         <Box className="h-full flex flex-col">
           <header className="p-6 border-b">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center">
-                <img src={logo} className="rounded-full" alt="" />
+            <div className="flex flex-col items-start gap-3">
+              <div className="gap-2 flex items-center justify-center">
+                <img src={logo1} className="rounded-full w-12" alt="" />
+                <img src={logo2} className="rounded-full w-12" alt="" />
               </div>
               <div>
                 <h2 className="text-base font-semibold">Admin</h2>
